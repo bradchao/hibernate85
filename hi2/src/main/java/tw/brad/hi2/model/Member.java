@@ -24,6 +24,10 @@ public class Member {
 	@Column(name = "name")
 	private String name;
 	
+	@Column(name = "icon")
+	private byte[] icon;
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -47,6 +51,12 @@ public class Member {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public byte[] getIcon() {
+		return icon;
+	}
+	public void setIcon(byte[] icon) {
+		this.icon = icon;
 	}
 	
 	

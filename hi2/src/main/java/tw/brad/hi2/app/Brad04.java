@@ -9,7 +9,7 @@ import org.hibernate.query.Query;
 public class Brad04 {
 
 	public static void main(String[] args) {
-		try (Session session = HibernateUtil.getSessionFactory().openSession()){
+		try (Session session = HibernateUtil.getSessionFactoryV2().openSession()){
 			
 			String sql = "SELECT * FROM member";
 			Transaction transaction = session.beginTransaction();
@@ -23,7 +23,7 @@ public class Brad04 {
 			
 			for (Object[] result : results) {
 				//System.out.println(result.length);
-				System.out.println(result[2]);
+				System.out.println(result[3]);
 			}
 			
 			

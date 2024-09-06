@@ -11,6 +11,20 @@ import tw.brad.hi2.model.Member;
 
 public class MemberDao {
 
+	// add Member
+	public void addMember(Member member) {
+		try(Session session = HibernateUtil.getSessionFactory().openSession()){
+			Transaction transaction = session.beginTransaction();
+			
+			session.persist(member);
+			
+			transaction.commit();
+			
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+	}
+	
 	public List<Member> getAll() throws Exception {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()){
 			
