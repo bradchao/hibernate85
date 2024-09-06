@@ -10,6 +10,7 @@ import org.hibernate.cfg.Environment;
 import org.hibernate.cfg.JdbcSettings;
 
 import tw.brad.hi2.model.Member;
+import tw.brad.hi2.model.MemberInfo;
 
 // static
 public class HibernateUtil {
@@ -22,6 +23,7 @@ public class HibernateUtil {
 			conf.configure("hibernate.cfg.xml");
 			
 			conf.addAnnotatedClass(Member.class);
+			conf.addAnnotatedClass(MemberInfo.class);
 			
 			registry = new StandardServiceRegistryBuilder()
 						.applySettings(conf.getProperties())
@@ -49,6 +51,7 @@ public class HibernateUtil {
 			conf.setProperties(prop);
 			
 			conf.addAnnotatedClass(Member.class);
+			conf.addAnnotatedClass(tw.brad.hi2.model.MemberInfo.class);
 			
 			registry = new StandardServiceRegistryBuilder()
 						.applySettings(conf.getProperties())
