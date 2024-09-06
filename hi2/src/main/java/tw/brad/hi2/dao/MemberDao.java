@@ -17,6 +17,7 @@ public class MemberDao {
 			Transaction transaction = session.beginTransaction();
 			
 			session.persist(member);
+			//session.save(member);
 			
 			transaction.commit();
 			
@@ -24,6 +25,31 @@ public class MemberDao {
 			System.out.println(e);
 		}
 	}
+	
+	// fetch member by id
+	public Member getMemberById(int id) throws Exception{
+		try(Session session = HibernateUtil.getSessionFactory().openSession()){
+			Member member = session.get(Member.class, id);
+			return member;
+		}catch(Exception e) {
+			System.out.println(e);
+			throw new Exception();
+		}
+	}
+	
+	public void deleteMember(Member member) {
+		try(Session session = HibernateUtil.getSessionFactory().openSession()){
+			Transaction transaction = session.beginTransaction();
+
+			session.remove(member);
+			
+			transaction.commit();
+			
+		}catch(Exception e) {
+			System.out.println(e);
+		}		
+	}
+	
 	
 	public List<Member> getAll() throws Exception {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()){

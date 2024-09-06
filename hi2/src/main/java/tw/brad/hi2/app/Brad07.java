@@ -8,9 +8,9 @@ public class Brad07 {
 
 	public static void main(String[] args) {
 		Member member = new Member();
-		member.setAccount("brad1");
+		member.setAccount("killme");
 		member.setPasswd(BCrypt.hashpw("123456", BCrypt.gensalt()));
-		member.setName("趙令文");
+		member.setName("砍我吧");
 
 		MemberDao memberDao = new MemberDao();
 		memberDao.addMember(member);
