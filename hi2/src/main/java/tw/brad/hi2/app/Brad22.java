@@ -12,11 +12,15 @@ public class Brad22 {
 
 	public static void main(String[] args) {
 		try {
-			List<UserBikeDao> ubikes = UserBikeDao.queryJoinById(5);
-			User user = new UserDao().queryById(ubikes.getFirst().getId());
+			List<UserBikeDao> ubikes = UserBikeDao.queryJoinById(4);
+			UserDao userDao = new UserDao();
+			User user = userDao.queryById(ubikes.getFirst().getId());
 			for (Bike bike: user.getBikes()) {
-				System.out.println("bike:" + bike.getBid());
+				System.out.println("bike:" + bike.getBid() + ":" + bike.getSpeed());
+				bike.setSpeed(100);
 			}
+			
+			userDao.update(user);
 			
 			
 			
