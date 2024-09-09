@@ -18,8 +18,6 @@ public class Brad21 {
 			List<User> users = new LinkedList<User>();
 			int id = -1; int count = 0;
 			for (UserBikeDao ubike : ubikes) {
-				System.out.println(ubike.getName() + ":" + ubike.getColor() + ":" + ubike.getSpeed());
-				
 				if (id != ubike.getId()) {
 					User user = new UserDao().queryById(ubike.getId());
 					users.add(user);

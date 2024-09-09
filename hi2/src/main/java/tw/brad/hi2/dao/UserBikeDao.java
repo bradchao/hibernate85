@@ -26,7 +26,7 @@ public class UserBikeDao {
 	
 	public static List<UserBikeDao> queryJoin() {
 		String sql = "SELECT u.id id, u.name name, b.bid bid, b.uid uid, b.color color, b.speed speed " + 
-					"FROM user u JOIN bike b ON u.id = b.uid";
+					"FROM user u JOIN bike b ON u.id = b.uid ORDER BY id";
 		
 		try(Session session = HibernateUtil.getSessionFactory().openSession()){
 			NativeQuery<UserBikeDao> result = session.createNativeQuery(sql, UserBikeDao.class);
@@ -38,6 +38,22 @@ public class UserBikeDao {
 		
 	}
 
+	public static List<UserBikeDao> queryJoinById(int id) {
+		String sql = "SELECT u.id id, u.name name, b.bid bid, b.uid uid, b.color color, b.speed speed " + 
+					"FROM user u JOIN bike b ON u.id = b.uid WHERE id = %d ORDER BY id";
+		String sql2 = String.format(sql, id);
+		System.out.println(sql2);
+		try(Session session = HibernateUtil.getSessionFactory().openSession()){
+			NativeQuery<UserBikeDao> result = session.createNativeQuery(sql2, UserBikeDao.class);
+			return result.list();
+		}catch(Exception e) {
+			System.out.println(e);
+			return null;
+		}
+		
+	}
+	
+	
 	public int getId() {
 		return id;
 	}
