@@ -49,4 +49,16 @@ public class AccountCartDao {
 		}
 	}
 	
+	public Account queryByAccountId(int id) throws Exception {
+		try(Session session = HibernateUtil.getSessionFactory().openSession()){
+			Account account = session.get(Account.class, id);
+			return account;
+		}catch(Exception e) {
+			System.out.println(e);
+			throw new Exception();
+		}
+		
+	}
+	
+	
 }
