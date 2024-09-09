@@ -6,13 +6,37 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityResult;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.FieldResult;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SqlResultSetMapping;
 import jakarta.persistence.Table;
 
+/*
+@SqlResultSetMapping(
+		name = "userBike",
+		entities = {
+				@EntityResult(
+						entityClass = User.class, fields = {
+								@FieldResult(name = "id", column = "user_id"),
+								@FieldResult(name = "name", column = "user_name")
+						}
+				),
+				@EntityResult(
+						entityClass = Bike.class, fields = {
+								@FieldResult(name = "id", column = "bike_id"),
+								@FieldResult(name = "uid", column = "bike_uid"),
+								@FieldResult(name = "color", column = "bike_color"),
+								@FieldResult(name = "speed", column = "bike_speed"),
+						}
+				)
+		}
+)
+*/
 @Entity
 @Table(name = "user")
 public class User {
@@ -24,7 +48,7 @@ public class User {
 	@Column(name = "name")
 	private String name;
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	private List<Bike> bikes;
 
 	public User() {
@@ -56,6 +80,7 @@ public class User {
 	}
 	
 	public void addBike(Bike bike) {
+		bike.setUser(this);
 		bikes.add(bike);
 	}
 	
