@@ -13,15 +13,11 @@ public class Brad23 {
 		try(Session session = HibernateUtil.getSessionFactory().openSession()){
 			transaction = session.beginTransaction();
 			
-			Student s1 = new Student("brad");
+			Student s1 = new Student("tony");
 			
-			Course c1 = new Course("Math");
-			Course c2 = new Course("Eng");
-			Course c3 = new Course("Chinese");
+			Course c1 = new Course("Computer");
 			
 			s1.addCourse(c1);
-			s1.addCourse(c2);
-			s1.addCourse(c3);
 
 			session.persist(s1);
 			
