@@ -1,5 +1,6 @@
 package tw.brad.hi2.dao;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -37,7 +38,7 @@ public class CourseDao {
 			return result.getResultList();
 		}catch(Exception e) {
 			System.out.println(e);
-			return null;
+			return new LinkedList<Course>();
 		}
 	}
 	
